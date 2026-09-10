@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpieza Nicol | Bilbao Bizkaia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        :root {
+            --azul: #0f2744;
+            --azul-oscuro: #0a1c33;
+            --naranja: #f59e0b;
+            --naranja-hover: #d97706;
+        }
+
+        /* ========== HEADER CON LA IMAGEN DE FONDO ========== */
+        header {
+            background-image: url('https://cdn.phototourl.com/free/2026-09-10-44cd6480-3b91-4680-b92a-bb2651f510a0.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.35);
+            min-height: 90px;
+        }
+
+        /* Capa oscura semitransparente para que se lean bien los tabs */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 28, 51, 0.55);
+            z-index: 0;
+        }
+
+        .logo, .tabs {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: white;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .logo span {
+            color: var(--naranja);
+        }
+
+        /* ========== MENÚ TABS ========== */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .tab-btn {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
+
+        .tab-btn:hover {
+            background: rgba(255,255,255,0.25);
+            color: white;
+        }
+
+        .tab-btn.active {
+            background: var(--naranja);
+            color: var(--azul);
+            border-color: var(--naranja);
+            font-weight: 700;
+        }
+
+        /* ========== CONTENIDO ========== */
+        .tab-content {
+            display: none;
+            padding: 40px 5%;
+            min-height: calc(100vh - 160px);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== INICIO ========== */
+        .hero {
+            background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+            color: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--naranja);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--naranja);
+            color: var(--azul);
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--naranja-hover);
+            transform: translateY(-2px);
+        }
+
+        .beneficios {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .beneficio {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ========== SERVICIOS ========== */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--azul);
+            margin-bottom: 10px;
+        }
+
+        .section-title span {
+            color: var(--naranja);
+        }
+
+        .underline {
+            width: 60px;
+            height: 4px;
+            background: var(--naranja);
+            margin: 0 auto 40px;
+            border-radius: 2px;
+        }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .servicio-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--naranja);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+        }
+
+        .servicio-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .num {
+            background: var(--naranja);
+            color: white;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .servicio-card h3 {
+            font-size: 1.25rem;
+            color: var(--azul);
+        }
+
+        .servicio-card ul {
+            list-style: none;
+        }
+
+        .servicio-card li {
+            padding: 6px 0;
+            padding-left: 18px;
+            position: relative;
+            color: #475569;
+        }
+
+        .servicio-card li::before {
+            content: "•";
+            color: var(--naranja);
+            position: absolute;
+            left: 0;
+            font-size: 1.3rem;
+        }
+
+        /* ========== PORTAFOLIO ========== */
+        .portafolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portafolio-card {
+            background: var(--azul);
+            color: white;
+            border-radius: 16px;
+            padding: 28px;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .portafolio-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--naranja);
+        }
+
+        .portafolio-icon {
+            background: var(--naranja);
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+        }
+
+        .portafolio-card h3 {
+            color: var(--naranja);
+            margin-bottom: 12px;
+            font-size: 1.25rem;
+        }
+
+        .portafolio-card ul {
+            list-style: none;
+        }
+
+        .portafolio-card li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .portafolio-card li::before {
+            content: "•";
+            color: var(--naranja);
+            position: absolute;
+            left: 0;
+        }
+
+        /* ========== CONTACTO ========== */
+        .contacto-banner {
+            background: var(--naranja);
+            color: var(--azul);
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contacto-info {
+            background: var(--azul);
+            color: white;
+            border-radius: 16px;
+            padding: 30px;
+        }
+
+        .info-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 22px;
+            align-items: flex-start;
+        }
+
+        .info-icon {
+            background: var(--naranja);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .info-item strong {
+            display: block;
+            color: var(--naranja);
+            margin-bottom: 3px;
+        }
+
+        .info-item p {
+            color: #cbd5e1;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea, select {
+            padding: 14px 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: white;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--naranja);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-btn {
+            background: var(--naranja);
+            color: var(--azul);
+            border: none;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-btn:hover {
+            background: var(--naranja-hover);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--azul-oscuro);
+            color: #94a3b8;
+            text-align: center;
+            padding: 25px 5%;
+            font-size: 0.9rem;
+        }
+
+        footer span {
+            color: var(--naranja);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+                min-height: auto;
+            }
+
+            .tabs {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                padding: 8px 14px;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER CON LA IMAGEN DE FONDO -->
+    <header>
+        <a href="#" class="logo" onclick="abrirTab('inicio')">
+            LIMPIEZA <span>NICOL</span>
+        </a>
+
+        <ul class="tabs">
+            <li><button class="tab-btn active" onclick="abrirTab('inicio')">Inicio</button></li>
+            <li><button class="tab-btn" onclick="abrirTab('servicios')">Servicios</button></li>
+            <li><button class="tab-btn" onclick="abrirTab('portafolio')">Portafolio</button></li>
+            <li><button class="tab-btn" onclick="abrirTab('contacto')">Contacto</button></li>
+        </ul>
+    </header>
+
+    <!-- ========== TAB INICIO ========== -->
+    <div id="inicio" class="tab-content active">
+        <div class="hero">
+            <h1>Limpieza profesional<br>para <span>tu hogar y negocio</span></h1>
+            <p>Servicio de limpieza y mantenimiento en Bilbao y Bizkaia. Resultados impecables garantizados.</p>
+            <a href="#" class="btn" onclick="abrirTab('contacto')">Solicitar presupuesto gratis</a>
+        </div>
+
+        <div class="beneficios">
+            <div class="beneficio">✅ Soluciones adaptadas</div>
+            <div class="beneficio">👤 Personal cualificado</div>
+            <div class="beneficio">🌿 Productos ecológicos</div>
+        </div>
+    </div>
+
+    <!-- ========== TAB SERVICIOS ========== -->
+    <div id="servicios" class="tab-content">
+        <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+        <div class="underline"></div>
+
+        <div class="servicios-grid">
+            <div class="servicio-card">
+                <div class="servicio-header">
+                    <div class="num">1</div>
+                    <h3>Comunidades y Portales</h3>
+                </div>
+                <ul>
+                    <li>Limpieza de portales y zonas comunes</li>
+                    <li>Mantenimiento de escaleras y ascensores</li>
+                    <li>Recogida de residuos y vaciado de papeleras</li>
+                    <li>Limpieza de cristales en entradas y accesos</li>
+                    <li>Mantenimiento de jardines y patios exteriores</li>
+                </ul>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-header">
+                    <div class="num">2</div>
+                    <h3>Empresas y Oficinas</h3>
+                </div>
+                <ul>
+                    <li>Limpieza diaria de oficinas y espacios de trabajo</li>
+                    <li>Desinfección de escritorios y superficies</li>
+                    <li>Salas de reuniones, cocinas y baños</li>
+                    <li>Limpieza de suelos y moquetas con maquinaria profesional</li>
+                    <li>Gestión de suministros de higiene y consumibles</li>
+                </ul>
+            </div>
+
+            <div class="servicio-card">
+                <div class="servicio-header">
+                    <div class="num">3</div>
+                    <h3>Casas y Pisos</h3>
+                </div>
+                <ul>
+                    <li>Limpieza general del hogar</li>
+                    <li>Limpieza profunda a fondo</li>
+                    <li>Cocinas y baños desinfectados a detalle</li>
+                    <li>Limpieza de cristales y ventanas</li>
+                    <li>Servicio puntual o periódico adaptado a ti</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TAB PORTAFOLIO ========== -->
+    <div id="portafolio" class="tab-content">
+        <h2 class="section-title">Portafolio de <span>Servicios Especiales</span></h2>
+        <div class="underline"></div>
+
+        <div class="portafolio-grid">
+            <div class="portafolio-card">
+                <div class="portafolio-icon">🏠</div>
+                <h3>Pisos</h3>
+                <ul>
+                    <li>Renovación y reforma integral de pisos</li>
+                    <li>Mantenimiento y adecuación</li>
+                </ul>
+            </div>
+
+            <div class="portafolio-card">
+                <div class="portafolio-icon">📦</div>
+                <h3>Trasteros</h3>
+                <ul>
+                    <li>Limpieza y organización de trasteros</li>
+                    <li>Vaciado y puesta a punto</li>
+                </ul>
+            </div>
+
+            <div class="portafolio-card">
+                <div class="portafolio-icon">🏪</div>
+                <h3>Lonjas</h3>
+                <ul>
+                    <li>Vaciado y limpieza de lonjas</li>
+                    <li>Adecuación de locales comerciales</li>
+                </ul>
+            </div>
+
+            <div class="portafolio-card">
+                <div class="portafolio-icon">🪵</div>
+                <h3>Retirada de Madera</h3>
+                <ul>
+                    <li>Recogida y retirada de restos de madera</li>
+                    <li>Gestión de escombros y residuos</li>
+                </ul>
+            </div>
+
+            <div class="portafolio-card">
+                <div class="portafolio-icon">📤</div>
+                <h3>Vaciado</h3>
+                <ul>
+                    <li>Vaciado completo de inmuebles</li>
+                    <li>Retirada de mobiliario y enseres</li>
+                </ul>
+            </div>
+
+            <div class="portafolio-card">
+                <div class="portafolio-icon">✨</div>
+                <h3>Limpieza profunda</h3>
+                <ul>
+                    <li>Limpieza profunda y desinfección</li>
+                    <li>Higienización profesional completa</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TAB CONTACTO ========== -->
+    <div id="contacto" class="tab-content">
+        <h2 class="section-title">Contacto</h2>
+        <div class="underline"></div>
+
+        <div class="contacto-banner">
+            PRESUPUESTO SIN COMPROMISO • RESPUESTA EN 24H • 100% GRATUITO
+        </div>
+
+        <div class="contacto-grid">
+            <div class="contacto-info">
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div>
+                        <strong>Teléfono</strong>
+                        <p>642 413 955</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div>
+                        <strong>Email</strong>
+                        <p>cirobeltranduran124@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div>
+                        <strong>Ubicación</strong>
+                        <p>Bilbao · Bizkaia<br>Servicio en todo Bilbao y Bizkaia</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">🕐</div>
+                    <div>
+                        <strong>Horario</strong>
+                        <p>Lunes – Sábado: 8:00 a 20:00</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="info-icon">💬</div>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>642 413 955</p>
+                    </div>
+                </div>
+            </div>
+
+            <form onsubmit="event.preventDefault(); alert('¡Gracias! Te contactaremos en menos de 24 horas.');">
+                <input type="text" placeholder="Tu nombre" required>
+                <input type="tel" placeholder="Tu teléfono" required>
+                <input type="email" placeholder="Tu email">
+                <select required>
+                    <option value="" disabled selected>Tipo de servicio</option>
+                    <option>Comunidades y Portales</option>
+                    <option>Empresas y Oficinas</option>
+                    <option>Casas y Pisos</option>
+                    <option>Vaciado de inmuebles</option>
+                    <option>Limpieza profunda</option>
+                    <option>Otro servicio</option>
+                </select>
+                <textarea placeholder="Cuéntanos qué necesitas..."></textarea>
+                <button type="submit" class="form-btn">Solicitar presupuesto ahora →</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2024 <span>Limpieza Nicol</span> · Todos los derechos reservados · Bilbao · Bizkaia
+    </footer>
+
+    <script>
+        function abrirTab(tabId) {
+            // Ocultar todos los contenidos
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Quitar active de todos los botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Mostrar el contenido seleccionado
+            document.getElementById(tabId).classList.add('active');
+
+            // Activar el botón correspondiente
+            const botones = document.querySelectorAll('.tab-btn');
+            botones.forEach(btn => {
+                const texto = btn.textContent.toLowerCase();
+                if ((tabId === 'inicio' && texto === 'inicio') ||
+                    (tabId === 'servicios' && texto === 'servicios') ||
+                    (tabId === 'portafolio' && texto === 'portafolio') ||
+                    (tabId === 'contacto' && texto === 'contacto')) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Scroll al inicio
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
