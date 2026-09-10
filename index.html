@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limpieza Nicol | Bilbao Bizkaia</title>
+    <title>Limpieza Nicol | Servicio profesional en Bilbao y Bizkaia</title>
+    <meta name="description" content="Limpieza profesional de comunidades, oficinas, casas, vaciados y mantenimiento en Bilbao y Bizkaia. Presupuesto sin compromiso. Teléfono: 642 413 955">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
 
         body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             background: #f1f5f9;
             color: #1e293b;
             line-height: 1.6;
@@ -25,7 +26,7 @@
             --naranja-hover: #d97706;
         }
 
-        /* ========== HEADER CON LA IMAGEN DE FONDO ========== */
+        /* ========== HEADER ========== */
         header {
             background-image: url('https://cdn.phototourl.com/free/2026-09-10-44cd6480-3b91-4680-b92a-bb2651f510a0.jpg');
             background-size: cover;
@@ -71,7 +72,7 @@
             color: var(--naranja);
         }
 
-        /* ========== MENÚ TABS ========== */
+        /* ========== TABS ========== */
         .tabs {
             display: flex;
             gap: 8px;
@@ -120,7 +121,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ========== HERO CON LA NUEVA IMAGEN ========== */
+        /* ========== HERO ========== */
         .hero {
             background-image: url('https://cdn.phototourl.com/free/2026-09-10-6cec6c1e-5da3-417b-87f1-9cd8c698efc8.jpg');
             background-size: cover;
@@ -138,12 +139,11 @@
             align-items: center;
         }
 
-        /* Capa oscura para legibilidad del texto */
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(10,28,51,0.75) 0%, rgba(10,28,51,0.45) 60%, rgba(10,28,51,0.2) 100%);
+            background: linear-gradient(90deg, rgba(10,28,51,0.78) 0%, rgba(10,28,51,0.50) 55%, rgba(10,28,51,0.25) 100%);
             z-index: 0;
         }
 
@@ -208,7 +208,7 @@
             gap: 10px;
         }
 
-        /* ========== SERVICIOS ========== */
+        /* ========== TÍTULOS ========== */
         .section-title {
             text-align: center;
             font-size: 2.2rem;
@@ -228,6 +228,7 @@
             border-radius: 2px;
         }
 
+        /* ========== SERVICIOS ========== */
         .servicios-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -539,6 +540,8 @@
         <div class="underline"></div>
 
         <div class="servicios-grid">
+
+            <!-- 1. Comunidades y Portales (actualizado) -->
             <div class="servicio-card">
                 <div class="servicio-header">
                     <div class="num">1</div>
@@ -547,12 +550,11 @@
                 <ul>
                     <li>Limpieza de portales y zonas comunes</li>
                     <li>Mantenimiento de escaleras y ascensores</li>
-                    <li>Recogida de residuos y vaciado de papeleras</li>
                     <li>Limpieza de cristales en entradas y accesos</li>
-                    <li>Mantenimiento de jardines y patios exteriores</li>
                 </ul>
             </div>
 
+            <!-- 2. Empresas y Oficinas -->
             <div class="servicio-card">
                 <div class="servicio-header">
                     <div class="num">2</div>
@@ -567,6 +569,7 @@
                 </ul>
             </div>
 
+            <!-- 3. Casas y Pisos -->
             <div class="servicio-card">
                 <div class="servicio-header">
                     <div class="num">3</div>
@@ -580,6 +583,7 @@
                     <li>Servicio puntual o periódico adaptado a ti</li>
                 </ul>
             </div>
+
         </div>
     </div>
 
@@ -719,16 +723,20 @@
 
     <script>
         function abrirTab(tabId) {
+            // Ocultar todos los contenidos
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
 
+            // Quitar active de todos los botones
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
+            // Mostrar el contenido seleccionado
             document.getElementById(tabId).classList.add('active');
 
+            // Activar el botón correspondiente
             const botones = document.querySelectorAll('.tab-btn');
             botones.forEach(btn => {
                 const texto = btn.textContent.toLowerCase();
@@ -740,6 +748,7 @@
                 }
             });
 
+            // Scroll suave al inicio
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
