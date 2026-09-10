@@ -43,7 +43,6 @@
             min-height: 90px;
         }
 
-        /* Capa oscura semitransparente para que se lean bien los tabs */
         header::before {
             content: '';
             position: absolute;
@@ -121,19 +120,44 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ========== INICIO ========== */
+        /* ========== HERO CON LA NUEVA IMAGEN ========== */
         .hero {
-            background: linear-gradient(135deg, var(--azul), var(--azul-oscuro));
+            background-image: url('https://cdn.phototourl.com/free/2026-09-10-6cec6c1e-5da3-417b-87f1-9cd8c698efc8.jpg');
+            background-size: cover;
+            background-position: center left;
+            background-repeat: no-repeat;
             color: white;
             border-radius: 20px;
-            padding: 60px 40px;
-            text-align: center;
+            padding: 70px 50px;
+            text-align: left;
             margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Capa oscura para legibilidad del texto */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(10,28,51,0.75) 0%, rgba(10,28,51,0.45) 60%, rgba(10,28,51,0.2) 100%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 580px;
         }
 
         .hero h1 {
             font-size: 2.8rem;
             margin-bottom: 15px;
+            line-height: 1.2;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .hero h1 span {
@@ -142,9 +166,9 @@
 
         .hero p {
             font-size: 1.2rem;
-            color: #94a3b8;
-            max-width: 600px;
-            margin: 0 auto 30px;
+            color: #e2e8f0;
+            margin-bottom: 30px;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
         }
 
         .btn {
@@ -156,11 +180,13 @@
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .btn:hover {
             background: var(--naranja-hover);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
         }
 
         .beneficios {
@@ -454,6 +480,16 @@
                 font-size: 0.9rem;
             }
 
+            .hero {
+                padding: 50px 25px;
+                min-height: 320px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
             .hero h1 {
                 font-size: 2rem;
             }
@@ -466,7 +502,7 @@
 </head>
 <body>
 
-    <!-- HEADER CON LA IMAGEN DE FONDO -->
+    <!-- HEADER -->
     <header>
         <a href="#" class="logo" onclick="abrirTab('inicio')">
             LIMPIEZA <span>NICOL</span>
@@ -483,9 +519,11 @@
     <!-- ========== TAB INICIO ========== -->
     <div id="inicio" class="tab-content active">
         <div class="hero">
-            <h1>Limpieza profesional<br>para <span>tu hogar y negocio</span></h1>
-            <p>Servicio de limpieza y mantenimiento en Bilbao y Bizkaia. Resultados impecables garantizados.</p>
-            <a href="#" class="btn" onclick="abrirTab('contacto')">Solicitar presupuesto gratis</a>
+            <div class="hero-content">
+                <h1>Limpieza profesional<br>para <span>tu hogar y negocio</span></h1>
+                <p>Servicio de limpieza y mantenimiento en Bilbao y Bizkaia. Resultados impecables garantizados.</p>
+                <a href="#" class="btn" onclick="abrirTab('contacto')">Solicitar presupuesto gratis</a>
+            </div>
         </div>
 
         <div class="beneficios">
@@ -681,20 +719,16 @@
 
     <script>
         function abrirTab(tabId) {
-            // Ocultar todos los contenidos
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.classList.remove('active');
             });
 
-            // Quitar active de todos los botones
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // Mostrar el contenido seleccionado
             document.getElementById(tabId).classList.add('active');
 
-            // Activar el botón correspondiente
             const botones = document.querySelectorAll('.tab-btn');
             botones.forEach(btn => {
                 const texto = btn.textContent.toLowerCase();
@@ -706,7 +740,6 @@
                 }
             });
 
-            // Scroll al inicio
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
